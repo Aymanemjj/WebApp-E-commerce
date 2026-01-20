@@ -2,6 +2,7 @@
 
 namespace app\models;
 use \PDO;
+use App\Core\Env;
 
 class Database
 {
@@ -10,8 +11,9 @@ class Database
 
     public static function getConnexion()
     {
+        Env::load(__DIR__."../../../.env");
         if (self::$connexion === null) {
-            self::$connexion = new PDO('mysql:host=localhost;dbname=MVC;charset=utf8mb4','root','O2H2sql',);
+            self::$connexion = new PDO("mysql:host=" . Env::get('DB_HOST') .";port=" . Env::get('DB_PORT') .";dbname=" . Env::get('DB_NAME') .";charset=utf8mb4",Env::get('DB_USER'),Env::get('DB_PASSWORD'));
         }
         return self::$connexion;
     }
