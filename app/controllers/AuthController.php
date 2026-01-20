@@ -6,16 +6,37 @@ use app\core\Controller;
 use app\core\Request;
 use Exception;
 
-class AuthController extends Controller{
+class AuthController extends Controller
+{
 
 
-    public function login(){
-        return $this->render('login');
+    public function login(Request $request)
+    {
+
+
+        if ($request->getMethod() === 'post') {
+            $login = new LoginController();
+            try {
+                $login->logIn();
+                $role = $_SESSION['role'];
+                return $this->render("$role-dashboard");
+            } catch (Exception $e) {
+                $e->getMessage();
+                return $this->render('login');
+            }
+        } else {
+            return $this->render('login');
+        }
+
+
     }
 
-    public function register(Request $request){
 
-        if($request->getMethod()==='post'){
+
+    public function register(Request $request)
+    {
+
+        if ($request->getMethod() === 'post') {
             $register = new RegisterController();
             try {
                 $register->registerUser();
@@ -25,11 +46,8 @@ class AuthController extends Controller{
                 $e->getMessage();
                 return $this->render('register');
             }
-            
-        }else{
+        } else {
             return $this->render('register');
         }
-        
-        
     }
 }

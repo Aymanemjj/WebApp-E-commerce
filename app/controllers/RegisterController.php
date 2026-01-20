@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Request;
 use app\models\User;
 use Exception;
+use app\controllers\sessionController;
 
 class RegisterController
 {
@@ -32,7 +33,7 @@ class RegisterController
 
 
         $user->save();
-        $this->startSession($user);
+        sessionController::startSession($user);
     }
 
     private function isValidname(object $user): bool
@@ -56,9 +57,9 @@ class RegisterController
         }
         $object = $user->find();
         if (is_object($object)) {
-            return true;
-        } else {
             throw new \Exception("email already exists");
+        } else {
+            return true;
         }
     }
 
@@ -71,12 +72,5 @@ class RegisterController
         }
     }
 
-    private function startSession($user)
-    {
-        session_start();
-        session_regenerate_id(true);
-        $_SESSION['email']  = $user->getEmail();
-        $_SESSION['role'] = $user->getRole();
-        $_SESSION['logged_in'] = true;
-    }
+
 }

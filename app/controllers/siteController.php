@@ -6,17 +6,16 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 
+
 class siteController extends Controller
 {
 
     public function home()
     {
 
-        $params = [
-            'name' => "Aymane"
-        ];
 
-        return $this->render('home', $params);
+
+        return $this->render('home');
     }
 
 
@@ -28,8 +27,11 @@ class siteController extends Controller
 
     public function handleContact(Request $request)
     {
-
         $body = $request->getBody();
+    }
 
+    public function logOut()
+    {
+        sessionController::endSession();
     }
 }

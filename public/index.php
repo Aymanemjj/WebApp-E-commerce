@@ -31,17 +31,20 @@ session_start();
 $app = new Application(dirname(__DIR__));
 
 
-
-
-
 $app->router->get('/', [siteController::class, 'home']);
+$app->router->post('/', [siteController::class, 'logOut']);
+
 $app->router->get('/contact', [siteController::class, 'contactView']);
 $app->router->post('/contact',[siteController::class, 'handleContact']);
 
 $app->router->get('/login', [AuthController::class,'login']);
 $app->router->post('/login', [AuthController::class,'login']);
+
 $app->router->get('/register', [AuthController::class,'register']);
 $app->router->post('/register', [AuthController::class,'register']);
+
+
+
 
 
 $app->run();

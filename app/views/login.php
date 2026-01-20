@@ -19,6 +19,6 @@
     </div>
 
     <div class="col-12">
-        <button type="submit" value="login" class="btn btn-primary">register</button>
+        <button type="submit" value="login" class="btn btn-primary">login</button>
     </div>
 </form>

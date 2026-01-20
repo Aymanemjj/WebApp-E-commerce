@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+
 class Router
 {
     public Response $response;
@@ -23,13 +24,14 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+
     public function resolve()
     {
         $path =  $this->request->getPath();
         $method = $this->request->getMethod();
 
         $callback = $this->routes[$method][$path] ?? false;
-
+        
         if ($callback === false) {
             $this->response->setResponseCode(404);
             return $this->renderView('error');
@@ -46,27 +48,15 @@ class Router
         return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view, $params)
+    public function renderView($view)
     {
 
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
+        $viewContent = $this->renderOnlyView($view);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    /*     private function renderErrorCode($code)
-    {
-        ob_start();
-        switch ($code) {
-            case 404:
-                return 'error';
-                break;
-            default:
-                return 404;
-                break;
-        }
-        return ob_get_clean();;
-    } */
+
 
     private function layoutContent()
     {
@@ -74,12 +64,9 @@ class Router
         include_once Application::$ROOT_DIR . "/app/views/layouts/main.php";
         return ob_get_clean();
     }
-    private function renderOnlyView($view, $params)
+    private function renderOnlyView($view, )
     {
 
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
 
         ob_start();
         include_once Application::$ROOT_DIR . "/app/views/$view.php";
