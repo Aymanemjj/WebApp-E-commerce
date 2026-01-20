@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\User;
+
 class BaseModelUser
 {
 
@@ -25,7 +27,7 @@ class BaseModelUser
         $stmt->execute();
     }
 
-    public function find(): User
+    public function find(): User | bool
     {
         $sql = "SELECT * FROM users WHERE email = :email";
         $connexion = Database::getConnexion();
@@ -33,11 +35,10 @@ class BaseModelUser
         $stmt = $connexion->prepare($sql);
 
         $stmt->bindValue(':email', $this->getEmail(), \PDO::PARAM_STR);
-
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
         $stmt->execute();
 
 
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
         return $stmt->fetch();
     }
 

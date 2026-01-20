@@ -40,7 +40,7 @@
         </ul>';
         }else{
           echo '<form action="" method="post">
-                        <button type="submit" value="register" class="btn btn-primary">Logout</button>
+                        <button type="submit" value="logout" class="btn btn-primary">Logout</button>
                     </form>';
         } ?>
         

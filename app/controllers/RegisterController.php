@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Request;
 use app\models\User;
+use Exception;
 
 class RegisterController
 {
@@ -16,15 +17,20 @@ class RegisterController
         $body = $request->getBody();
         if ($this->isValidPasswordSignUp($body)) {
             $user->setters($body);
+        } else {
+            return;
         }
-/*          if ($this->isValidname($user)) {
-            return false;
-        }
-        if ($this->isValidEmailSignUp($user)) {
+
+        try {
+            !$this->isValidname($user);
+            $this->isValidEmailSignUp($user);
+                
             
-            throw new \Exception("Email is not correct");
-        }  */
-        
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+
         $user->save();
         $this->startSession($user);
     }
@@ -33,27 +39,26 @@ class RegisterController
     {
         $pattern = "/^(.*?)\s([\wáâàãçéêíóôõúüÁÂÀÃÇÉÊÍÓÔÕÚÜ]+\-?'?\w*\.?)$/u";
 
-        if (!preg_match($pattern, $user->getFirstname())) {
-            throw new \Exception("firstname is not correct");
-        } else if (!preg_match($pattern, $user->getLastname())) {
-            throw new \Exception("lastname is not correct");
+        if (preg_match($pattern, $user->getFirstname())) {
+            throw new \Exception("firstname is not valid");
+        } else if (preg_match($pattern, $user->getLastname())) {
+            throw new \Exception("lastname is not valid");
+        } else {
+            return true;
         }
-
-
-        return true;
     }
 
 
     private function isValidEmailSignUp(object $user): bool
     {
         if (!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
-            return false;
+            throw new \Exception("email is not valid");
         }
         $object = $user->find();
-        if (is_null($object)) {
+        if (is_object($object)) {
             return true;
         } else {
-            return false;
+            throw new \Exception("email already exists");
         }
     }
 
@@ -61,8 +66,9 @@ class RegisterController
     {
         if ($body['password'] === $body['confirmPassword']) {
             return true;
+        } else {
+            throw new \Exception("passwords are not matching");
         }
-        throw new \Exception("passwords are not matching");
     }
 
     private function startSession($user)

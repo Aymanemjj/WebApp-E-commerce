@@ -23,6 +23,7 @@ class AuthController extends Controller{
                 return $this->render("$role-dashboard");
             } catch (Exception $e) {
                 $e->getMessage();
+                return $this->render('register');
             }
             
         }else{

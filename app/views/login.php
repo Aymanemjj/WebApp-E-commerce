@@ -1,3 +1,10 @@
+<?php
+    if(isset($_SESSION['logged_in'])){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+?>
+
+
 <h1>Login</h1>
 
 
