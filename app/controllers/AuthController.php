@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
 use Exception;
+use Locale;
 
 class AuthController extends Controller
 {
@@ -18,8 +19,7 @@ class AuthController extends Controller
             $login = new LoginController();
             try {
                 $login->logIn();
-                $role = $_SESSION['role'];
-                return $this->render("$role-dashboard");
+                return header("Location: /");
             } catch (Exception $e) {
                 $e->getMessage();
                 return $this->render('login');
@@ -40,8 +40,7 @@ class AuthController extends Controller
             $register = new RegisterController();
             try {
                 $register->registerUser();
-                $role = $_SESSION['role'];
-                return $this->render("$role-dashboard");
+                return header("Location: /");
             } catch (Exception $e) {
                 $e->getMessage();
                 return $this->render('register');
