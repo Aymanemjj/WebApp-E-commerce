@@ -11,7 +11,7 @@ class Database
     public static function getConnexion()
     {
         if (self::$connexion === null) {
-            self::$connexion = new PDO('mysql:host=localhost;dbname=MVC;charset=utf8mb4','root','O2H2sql',);
+            self::$connexion = new PDO('mysql:host=localhost;dbname=commerce;charset=utf8mb4','root','O2H2sql',);
         }
         return self::$connexion;
     }

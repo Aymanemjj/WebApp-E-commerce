@@ -15,6 +15,10 @@ class User extends BaseModelUser
 
     private string $password;
 
+    private bool $active;
+
+    private string $joined;
+
     private string $role = 'user';
 
 
@@ -105,6 +109,48 @@ class User extends BaseModelUser
 
         return $this;
     }
+
+
+        /**
+     * Get the value of active
+     */ 
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set the value of active
+     *
+     */ 
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of joined
+     */ 
+    public function getJoined()
+    {
+        return $this->joined;
+    }
+
+    /**
+     * Set the value of joined
+     *
+     */ 
+    public function setJoined($joined)
+    {
+        $this->joined = $joined;
+
+        return $this;
+    }
+
+
+    
     public function getFullname() {
         $fname = $this->getFirstname();
         $lname = $this->getLastname();
@@ -126,4 +172,5 @@ class User extends BaseModelUser
             $this->setRole($body['role']);
         }
     }
+
 }
