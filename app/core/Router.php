@@ -56,6 +56,13 @@ class Router
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
+    public function renderViewAdmin($view)
+    {
+
+        $layoutContent = $this->layoutContentAdmin();
+        $viewContent = $this->renderOnlyView($view);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
 
 
     private function layoutContent()
@@ -64,6 +71,14 @@ class Router
         include_once Application::$ROOT_DIR . "/app/views/layouts/main.php";
         return ob_get_clean();
     }
+
+    private function layoutContentAdmin()
+    {
+        ob_start();
+        include_once Application::$ROOT_DIR . "/app/views/layouts/admin.php";
+        return ob_get_clean();
+    }
+
     private function renderOnlyView($view, )
     {
 

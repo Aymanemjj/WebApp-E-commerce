@@ -12,10 +12,13 @@ class siteController extends Controller
 
     public function home()
     {
-
-
-
         return $this->render('home');
+    }
+
+
+    public function admin_dashboard()
+    {
+        return $this->renderAdmin('admin-dashboard');
     }
 
 
@@ -33,5 +36,14 @@ class siteController extends Controller
     public function logOut()
     {
         sessionController::endSession();
+    }
+
+    public function login()
+    {
+        return $this->render('/login');
+    }
+    public function register()
+    {
+        return $this->render('/login');
     }
 }

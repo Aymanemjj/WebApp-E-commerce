@@ -19,13 +19,17 @@ class AuthController extends Controller
             $login = new LoginController();
             try {
                 $login->logIn();
+                $role = $_SESSION['role'];
+                if ($role === 'admin') {
+                    return header("Location: /admin-dashboard");
+                }
                 return header("Location: /");
             } catch (Exception $e) {
                 $e->getMessage();
-                return $this->render('login');
+                return header("Location: /login");
             }
         } else {
-            return $this->render('login');
+            return header("Location: /login");
         }
 
 

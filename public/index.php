@@ -37,15 +37,14 @@ $app->router->post('/', [siteController::class, 'logOut']);
 $app->router->get('/about', [siteController::class, 'contactView']);
 $app->router->post('/about',[siteController::class, 'handleContact']);
 
-$app->router->get('/login', [AuthController::class,'login']);
+$app->router->get('/login', [siteController::class,'login']);
 $app->router->post('/login', [AuthController::class,'login']);
 
-$app->router->get('/register', [AuthController::class,'register']);
+$app->router->get('/register', [siteController::class,'register']);
 $app->router->post('/register', [AuthController::class,'register']);
 
-
-
-
+$app->router->get('/admin-dashboard', [siteController::class, 'admin_dashboard']);
+$app->router->post('/admin-dashboard', [siteController::class, 'logOut']);
 
 $app->run();
 ?>
