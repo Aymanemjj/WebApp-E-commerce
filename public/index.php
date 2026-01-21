@@ -48,6 +48,8 @@ $app->router->post('/admin-dashboard', [siteController::class, 'logOut']);
 
 $app->router->get('/401', [siteController::class, 'error401']);
 
+$app->router->get('/admin-products',[siteController::class, 'admin_products']);
+
 $app->run();
 ?>
 

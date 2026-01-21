@@ -21,7 +21,8 @@ class siteController extends Controller
         return $this->renderAdmin('admin-dashboard');
     }
 
-    public function error401(){
+    public function error401()
+    {
         return $this->render(401);
     }
 
@@ -48,5 +49,10 @@ class siteController extends Controller
     public function register()
     {
         return $this->render('/login');
+    }
+
+    public function admin_products()
+    {
+        return $this->render('/admin-products');
     }
 }

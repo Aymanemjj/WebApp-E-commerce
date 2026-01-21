@@ -8,7 +8,6 @@ if ($_SESSION['role'] === 'user') {
 
 
 
-var_dump($_SESSION);
 
 ?>
 
