@@ -33,8 +33,8 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         
         if ($callback === false) {
-            $this->response->setResponseCode(404);
-            return $this->renderView('error');
+            
+            return $this->renderView('404');
             exit;
         }
 
@@ -50,7 +50,9 @@ class Router
 
     public function renderView($view)
     {
-
+        if(is_int($view)){
+            $this->response->setResponseCode($view);
+        }
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view);
         return str_replace('{{content}}', $viewContent, $layoutContent);
@@ -63,6 +65,7 @@ class Router
         $viewContent = $this->renderOnlyView($view);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
+
 
 
     private function layoutContent()

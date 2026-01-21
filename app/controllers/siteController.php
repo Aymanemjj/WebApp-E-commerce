@@ -21,6 +21,9 @@ class siteController extends Controller
         return $this->renderAdmin('admin-dashboard');
     }
 
+    public function error401(){
+        return $this->render(401);
+    }
 
     public function contactView()
     {

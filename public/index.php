@@ -46,6 +46,8 @@ $app->router->post('/register', [AuthController::class,'register']);
 $app->router->get('/admin-dashboard', [siteController::class, 'admin_dashboard']);
 $app->router->post('/admin-dashboard', [siteController::class, 'logOut']);
 
+$app->router->get('/401', [siteController::class, 'error401']);
+
 $app->run();
 ?>
 
