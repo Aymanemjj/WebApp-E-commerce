@@ -10,7 +10,7 @@ class Product
     private string $description;
     private float $price;
     private int $stock;
-    private Category $category;
+    private string $category;
 
     /**
      * Get the value of id
@@ -132,6 +132,14 @@ class Product
         return $this;
     }
 
+
+    public function setter($body){
+        $this->setName($body['name']);
+        $this->setCategory($body['category']);
+        $this->setPrice($body['price']);
+        $this->setDescription($body['description']);
+        $this->setStock($body['stock']);
+    }
 
     public function save()
     {

@@ -3,30 +3,31 @@
 namespace app\controllers;
 
 use app\core\Request;
+use app\models\Category;
 use app\models\Database;
-use app\models\Product;
 
-class ProductController{
+class CategoryController
+{
 
-
-    public function addProduct(){
+    public function addCategory()
+    {
         $request = new Request();
         $body = $request->getBody();
 
-        $product = new Product;
-        $product->setter($body);
-        $product->save();
+        $category = new Category;
+        $category->setter($body);
+        $category->save();
     }
 
 
-        public function findAll()
+    public function findAll()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM categories";
         $connexion = Database::getConnexion();
 
         $stmt = $connexion->prepare($sql);
 
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, Product::class);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Category::class);
         $stmt->execute();
 
 

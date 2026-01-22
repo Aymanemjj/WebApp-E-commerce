@@ -1,13 +1,27 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
+
+use app\controllers\ProductController;
 
 class AdminController
 {
 
-    public function creatCategory($name)
+
+
+    public function switch()
     {
-        $category = new Category;
-        $category->creatCategory($name);
+        switch ($_POST['submit']) {
+            case 'newProduct':
+                $productController = new ProductController;
+                $productController->addProduct();
+                break;
+
+            case 'newCategory':
+                $categoryController = new CategoryController;
+                $categoryController->addCategory();
+                break;
+        }
+        return header("Location : /admin-products");
     }
 }

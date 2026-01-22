@@ -54,4 +54,51 @@ class Category{
         $stmt ->bindParam(':name', $name);
         $stmt->execute();
     }
+
+
+    public function setter($body){
+        $this->setName($body['name']);
+    }
+
+    public function save()
+    {
+        $sql = "INSERT INTO categories (name) VALUES (:name)";
+        $connexion = Database::getConnexion();
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function find(): Category | bool
+    {
+        $sql = "SELECT * FROM categories WHERE name = :name";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Category::class);
+        $stmt->execute();
+
+
+        return $stmt->fetch();
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM categories WHERE name = :name";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+            return true;
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+    }
 }

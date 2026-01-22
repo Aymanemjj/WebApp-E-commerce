@@ -38,30 +38,29 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
+                                        <?php
+
+                                        use app\controllers\ProductController;
+
+                                        $productController = new ProductController;
+                                        $list = $productController->findAll();
+                                        foreach ($list as $product) {
+                                            echo '
+                                            <tr>
+                                            <td>' . $product->getName() . '</td>
+                                            <td>' . $product->getPrice() . '</td>
+                                            <td>' . $product->getStock() . '</td>
+                                            <td>' . $product->getCategory() . '</td>
                                             <td>
                                                 <form action="" method="post">
-                                                    <button type="submit" value="product-edit" class="btn btn-secondary">Edit</button>
-                                                    <button type="submit" value="product-delete" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" name="edit" value="' . $product->getId() . '" class="btn btn-secondary">Edit</button>
+                                                    <button type="submit" name="delete" value="' . $product->getId() . '" class="btn btn-danger">Delete</button>
                                                 </form>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>
-                                                <form action="" method="post">
-                                                    <button type="submit" value="product-edit" class="btn btn-secondary">Edit</button>
-                                                    <button type="submit" value="product-delete" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                            </tr>';
+                                        }
+
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -81,11 +80,38 @@
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="post">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3">
+                                                        <input class="form-control" type="text" name="name" placeholder="Name" />
+                                                        <label for="name">Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <select class="form-control" name="category">
 
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" type="text" name="name" placeholder="Name" />
-                                                <label for="name">Name</label>
+                                                            <option value=""></option>
+                                                            <?php
+
+                                                            use app\controllers\CategoryController;
+
+                                                            $categoryController = new CategoryController;
+                                                            $list = $categoryController->findAll();
+                                                            foreach ($list as $category) {
+                                                                echo '<option value="' . $category->getId() . '">'
+                                                                    . htmlspecialchars($category->getName()) .
+                                                                    '</option>';
+                                                            }
+
+                                                            ?>
+
+                                                        </select>
+                                                        <label for="category">Category</label>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                             <div class="form-floating mb-3">
                                                 <textarea class="form-control" maxlength="255" type="text" name="description" placeholder="description"></textarea>
                                                 <label for="description">Description</label>
@@ -99,16 +125,13 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <select class="form-control" name="category">
-                                                            <option value=""></option>
-                                                            <option value="phone">Phones</option>
-                                                        </select>
-                                                        <label for="category">Category</label>
+                                                        <input class="form-control" type="number" name="stock" placeholder="Stock" />
+                                                        <label for="stock">Stock</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid"><button type="submit" value="newProduct" class="btn btn-primary">New product</button></div>
+                                            <div class="d-grid mt-4 mb-0">
+                                                <button type="submit" name="submit" value="newProduct" class="btn btn-primary">New product</button>
                                             </div>
                                         </form>
                                     </div>
@@ -135,8 +158,8 @@
                                                 <input class="form-control" type="text" name="name" placeholder="Name" />
                                                 <label for="name">name</label>
                                             </div>
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid"><button type="submit" value="newCategory" class="btn btn-primary">New category</button></div>
+                                            <div class="d-grid mt-4 mb-0">
+                                                <button type="submit" name="submit" value="newCategory" class="btn btn-primary">New category</button>
                                             </div>
                                         </form>
                                     </div>
