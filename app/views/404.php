@@ -7,7 +7,7 @@
                                 <div class="text-center mt-4">
                                     <img class="mb-4 img-error" src="config/img/error-404-monochrome.svg" />
                                     <p class="lead">This requested URL was not found on this server.</p>
-                                    <a href="/">
+                                    <a href="" onclick="history.back()">
                                         <i class="fas fa-arrow-left me-1"></i>
                                         Go back
                                     </a>

@@ -53,6 +53,16 @@ class siteController extends Controller
 
     public function admin_products()
     {
-        return $this->render('/admin-products');
+        return $this->renderAdmin('/admin-products');
+    }
+
+    public function admin_charts()
+    {
+        return $this->renderAdmin('/admin-charts');
+    }
+
+    public function admin_tables()
+    {
+        return $this->renderAdmin('/admin-tables');
     }
 }

@@ -1,6 +1,11 @@
 <?php
 if (isset($_SESSION['logged_in'])) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    if($_SESSION['role'] === 'admin'){
+        header('Location: /admin-dashboard');
+    }else{
+        header('Location: /');
+    }
+    
 }
 ?>
 
