@@ -25,3 +25,35 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+
+const newProductBtn = document.getElementById("product-creat");
+const newCategoryBtn = document.getElementById("category-creat");
+
+const newProductModal = document.getElementById("product-modal");
+const newCategoryModal = document.getElementById("category-modal");
+
+const categoryModalClose = document.getElementById('categoryModalClose');
+const productModalClose = document.getElementById('productModalClose');
+
+newProductBtn.addEventListener("click", showModal);
+newCategoryBtn.addEventListener("click", showModal);
+
+categoryModalClose.addEventListener("click", closeModal);
+productModalClose.addEventListener("click", closeModal);
+
+function showModal(e) {
+    if (e.target.id === "product-creat") {
+        newProductModal.classList = "";
+    } else if (e.target.id === "category-creat") {
+        newCategoryModal.classList = "";
+    }
+}
+
+function closeModal(e) {
+    if (e.target.id === "productModalClose") {
+        newProductModal.classList = "modal";
+    } else if (e.target.id === "categoryModalClose") {
+        newCategoryModal.classList = "modal";
+    }
+}

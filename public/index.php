@@ -49,8 +49,11 @@ $app->router->post('/admin-dashboard', [siteController::class, 'logOut']);
 $app->router->get('/401', [siteController::class, 'error401']);
 
 $app->router->get('/admin-products',[siteController::class, 'admin_products']);
+$app->router->post('/admin-products', []);
 $app->router->get('/admin-charts',[siteController::class, 'admin_charts']);
 $app->router->get('/admin-tables',[siteController::class, 'admin_tables']);
+
+
 
 $app->run();
 ?>

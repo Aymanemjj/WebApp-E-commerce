@@ -28,6 +28,7 @@ if ($_SESSION['role'] === 'user') {
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="config/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e53a9172bb.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">

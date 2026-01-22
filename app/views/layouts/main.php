@@ -11,7 +11,7 @@
   <link rel="icon" type="image/x-icon" href="config/favicon.ico" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- Core theme CSS (includes Bootstrap)-->
+<script src="https://kit.fontawesome.com/e53a9172bb.js" crossorigin="anonymous"></script>  <!-- Core theme CSS (includes Bootstrap)-->
   <link href="config/styles.css" rel="stylesheet" />
 </head>
 

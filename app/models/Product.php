@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-class Product{
+class Product
+{
 
     private ?int $id;
     private string $name;
@@ -10,4 +11,172 @@ class Product{
     private float $price;
     private int $stock;
     private Category $category;
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of stock
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+    /**
+     * Set the value of stock
+     *
+     * @return  self
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+
+    public function save()
+    {
+        $sql = "INSERT INTO products (name, description, price, stock, category) VALUES (:name, :description, :price, :stock, :category)";
+        $connexion = Database::getConnexion();
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(':description', $this->getDescription(), \PDO::PARAM_STR);
+        $stmt->bindValue(':price', $this->getPrice(), \PDO::PARAM_INT);
+        $stmt->bindValue(':stock', $this->getStock(), \PDO::PARAM_INT);
+        $stmt->bindValue(':category', $this->getCategory(), \PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
+    public function find(): Product | bool
+    {
+        $sql = "SELECT * FROM Products WHERE name = :name";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Product::class);
+        $stmt->execute();
+
+
+        return $stmt->fetch();
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM products WHERE name = :name";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+            return true;
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+    }
 }

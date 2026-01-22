@@ -7,23 +7,16 @@
                             <li class="breadcrumb-item active">Products</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-body">
-                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
-                            </div>
-                        </div>
-                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Products dataTable
                             </div>
                             <div class="card-body">
 
-                                <form action="" method="post" class="mb-3">
-                                    <button type="submit" value="product-creat" class="btn btn-primary">New product</button>
-                                    <button type="submit" value="category-creat" class="btn btn-warning">New category</button>
-                                </form>
+                                <div class="mb-3">
+                                    <button type="button" id="product-creat" class="btn btn-primary">New product</button>
+                                    <button type="button" id="category-creat" class="btn btn-warning">New category</button>
+                                </div>
 
                                 <table id="datatablesSimple">
                                     <thead>
@@ -77,20 +70,21 @@
                 </main>
 
 
-                <div class="modal">
+                <div id="product-modal" class="modal">
                     <div class="container ">
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header">
+                                    <div class="card-header d-flex justify-content-between">
                                         <h3 class="text-center font-weight-light my-4">Create a product</h3>
+                                        <button id="productModalClose" class="btn btn-outline-dark"><i class="fa-regular fa-rectangle-xmark"></i></button>
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="post">
 
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" type="text" name="name" placeholder="Name" />
-                                                <label for="name">name</label>
+                                                <label for="name">Name</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <textarea class="form-control" maxlength="255" type="text" name="description" placeholder="description"></textarea>
@@ -114,7 +108,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid"><button type="submit" value="register" class="btn btn-primary">New product</button></div>
+                                                <div class="d-grid"><button type="submit" value="newProduct" class="btn btn-primary">New product</button></div>
                                             </div>
                                         </form>
                                     </div>
@@ -125,13 +119,14 @@
                 </div>
 
 
-                <div class="modal">
+                <div id="category-modal" class="modal">
                     <div class="container ">
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header">
+                                    <div class="card-header d-flex justify-content-between">
                                         <h3 class="text-center font-weight-light my-4">Create a category</h3>
+                                        <button id="categoryModalClose" class="btn btn-outline-dark"><i class="fa-regular fa-rectangle-xmark"></i></button>
                                     </div>
                                     <div class="card-body">
                                         <form action="" method="post">
@@ -141,7 +136,7 @@
                                                 <label for="name">name</label>
                                             </div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid"><button type="submit" value="register" class="btn btn-primary">New category</button></div>
+                                                <div class="d-grid"><button type="submit" value="newCategory" class="btn btn-primary">New category</button></div>
                                             </div>
                                         </form>
                                     </div>
