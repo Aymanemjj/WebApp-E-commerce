@@ -65,4 +65,9 @@ class siteController extends Controller
     {
         return $this->renderAdmin('/admin-tables');
     }
+
+    public function admin_orders()
+    {
+        return $this->renderAdmin('/admin-orders');
+    }
 }

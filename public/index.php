@@ -55,6 +55,7 @@ $app->router->post('/admin-products', [AdminController::class, 'switch']);
 $app->router->get('/admin-charts',[siteController::class, 'admin_charts']);
 $app->router->get('/admin-tables',[siteController::class, 'admin_tables']);
 
+$app->router->get('/admin-orders',[siteController::class, 'admin_orders']);
 
 
 $app->run();

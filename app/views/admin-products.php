@@ -52,10 +52,8 @@
                                             <td>' . $product->getStock() . '</td>
                                             <td>' . $product->getCategory() . '</td>
                                             <td>
-                                                <form action="" method="post">
-                                                    <button type="submit" name="edit" value="' . $product->getId() . '" class="btn btn-secondary">Edit</button>
-                                                    <button type="submit" name="delete" value="' . $product->getId() . '" class="btn btn-danger">Delete</button>
-                                                </form>
+                                                <button type="submit" name="edit" value="' . $product->getId() . '" class="btn btn-secondary">Edit</button>
+                                                <button type="submit" name="delete" value="' . $product->getId() . '" class="btn btn-danger">Delete</button>
                                             </td>
                                             </tr>';
                                         }

@@ -57,3 +57,4 @@ function closeModal(e) {
         newCategoryModal.classList = "modal";
     }
 }
+
