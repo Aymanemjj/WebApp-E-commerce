@@ -85,6 +85,20 @@ class Category{
         return $stmt->fetch();
     }
 
+    public function findAll()
+    {
+        $sql = "SELECT * FROM categories";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Category::class);
+        $stmt->execute();
+
+
+        return $stmt->fetchAll();
+    }
+
     public function delete()
     {
         $sql = "DELETE FROM categories WHERE name = :name";

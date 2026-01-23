@@ -20,17 +20,5 @@ class CategoryController
     }
 
 
-    public function findAll()
-    {
-        $sql = "SELECT * FROM categories";
-        $connexion = Database::getConnexion();
-
-        $stmt = $connexion->prepare($sql);
-
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, Category::class);
-        $stmt->execute();
-
-
-        return $stmt->fetchAll();
-    }
+    
 }

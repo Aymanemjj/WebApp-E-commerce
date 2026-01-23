@@ -171,6 +171,20 @@ class Product
         return $stmt->fetch();
     }
 
+       public function findAll()
+    {
+        $sql = "SELECT * FROM products";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Product::class);
+        $stmt->execute();
+
+
+        return $stmt->fetchAll();
+    }
+
     public function delete()
     {
         $sql = "DELETE FROM products WHERE name = :name";

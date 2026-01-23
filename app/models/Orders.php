@@ -110,5 +110,70 @@ class Orders{
 
         return $this;
     }
-    
+
+/*         public function setters($body)
+    {
+        $this->setAddress($body['address']);
+        $this->setTotal($body);
+        $this->setEmail($body['email']);
+        $this->setPassword($body['password']);
+
+        if (isset($body['role'])) {
+            $this->setRole($body['role']);
+        }
+    }
+ */
+    public function save()
+    {
+        $sql = "INSERT INTO users (total, address) VALUES (:total, :address)";
+        $connexion = Database::getConnexion();
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':total', $this->getTotal(), \PDO::PARAM_INT);
+        $stmt->bindValue(':address', $this->getAddress(), \PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
+    public function find(): Orders | bool
+    {
+        $sql = "SELECT * FROM orders WHERE address = :address";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':address', $this->getAddress(), \PDO::PARAM_STR);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Orders::class);
+        $stmt->execute();
+
+
+        return $stmt->fetch();
+    }
+
+        public function findAll()
+    {
+        $sql = "SELECT * FROM orders";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, Orders::class);
+        $stmt->execute();
+
+
+        return $stmt->fetchAll();
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':id', $this->getID(), \PDO::PARAM_STR);
+        $stmt->execute();
+        return true;
+    }
+
 }

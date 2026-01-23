@@ -113,7 +113,7 @@ class User
         /**
      * Get the value of active
      */ 
-    public function getActive()
+    public function getActive() : bool
     {
         return $this->active;
     }
@@ -200,6 +200,20 @@ class User
 
 
         return $stmt->fetch();
+    }
+
+       public function findAll()
+    {
+        $sql = "SELECT * FROM users";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        $stmt->execute();
+
+
+        return $stmt->fetchAll();
     }
 
     public function delete()

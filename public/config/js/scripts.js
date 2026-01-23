@@ -29,24 +29,32 @@ window.addEventListener('DOMContentLoaded', event => {
 
 const newProductBtn = document.getElementById("product-creat");
 const newCategoryBtn = document.getElementById("category-creat");
+const newUserBtn = document.getElementById("user-creat");
 
 const newProductModal = document.getElementById("product-modal");
 const newCategoryModal = document.getElementById("category-modal");
+const newUserModal = document.getElementById("user-modal");
 
 const categoryModalClose = document.getElementById('categoryModalClose');
 const productModalClose = document.getElementById('productModalClose');
+const userModalClose = document.getElementById('userModalClose');
 
 newProductBtn.addEventListener("click", showModal);
 newCategoryBtn.addEventListener("click", showModal);
+newUserBtn.addEventListener("click", showModal);
 
-categoryModalClose.addEventListener("click", closeModal);
+
 productModalClose.addEventListener("click", closeModal);
+categoryModalClose.addEventListener("click", closeModal);
+userModalClose.addEventListener("click", closeModal);
 
 function showModal(e) {
     if (e.target.id === "product-creat") {
         newProductModal.classList = "";
     } else if (e.target.id === "category-creat") {
         newCategoryModal.classList = "";
+    }else if(e.target.id ==="user-creat"){
+        newUserModal.classList= "";
     }
 }
 
@@ -55,6 +63,7 @@ function closeModal(e) {
         newProductModal.classList = "modal";
     } else if (e.target.id === "categoryModalClose") {
         newCategoryModal.classList = "modal";
+    }else if(e.target.id === "userModalClose") {
+        userModalClose.classList = "modal";
     }
 }
-

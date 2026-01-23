@@ -40,10 +40,10 @@
                                     <tbody>
                                         <?php
 
-                                        use app\controllers\ProductController;
+use app\controllers\AdminController;
 
-                                        $productController = new ProductController;
-                                        $list = $productController->findAll();
+                                        $adminController = new AdminController;
+                                        $list = $adminController->showProducts();
                                         foreach ($list as $product) {
                                             echo '
                                             <tr>
@@ -92,13 +92,11 @@
                                                             <option value=""></option>
                                                             <?php
 
-                                                            use app\controllers\CategoryController;
 
-                                                            $categoryController = new CategoryController;
-                                                            $list = $categoryController->findAll();
+                                                            $list = $adminController->showCategorys();
                                                             foreach ($list as $category) {
                                                                 echo '<option value="' . $category->getId() . '">'
-                                                                    . htmlspecialchars($category->getName()) .
+                                                                    . $category->getName() .
                                                                     '</option>';
                                                             }
 

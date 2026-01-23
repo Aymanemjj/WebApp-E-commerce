@@ -61,9 +61,9 @@ class siteController extends Controller
         return $this->renderAdmin('/admin-charts');
     }
 
-    public function admin_tables()
+    public function admin_users()
     {
-        return $this->renderAdmin('/admin-tables');
+        return $this->renderAdmin('/admin-users');
     }
 
     public function admin_orders()

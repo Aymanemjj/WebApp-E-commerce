@@ -3,6 +3,10 @@
 namespace app\controllers;
 
 use app\controllers\ProductController;
+use app\models\Category;
+use app\models\Orders;
+use app\models\Product;
+use app\models\User;
 
 class AdminController
 {
@@ -22,6 +26,27 @@ class AdminController
                 $categoryController->addCategory();
                 break;
         }
-        return header("Location : /admin-products");
+        
+        return ;
+    }
+
+    public function showProducts(){
+        $product = new Product;
+        return $product->findAll();
+    }
+
+    public function showCategorys(){
+        $category = new Category;
+        return $category->findAll();
+    }
+
+    public function showUsers(){
+        $user = new User;
+        return $user->findAll();
+    }
+
+    public function showOrders(){
+        $order = new Orders;
+        return $order->findAll();
     }
 }

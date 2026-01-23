@@ -1,15 +1,15 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Products</h1>
+                        <h1 class="mt-4">Orders</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="admin-dashboard">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Products</li>
+                            <li class="breadcrumb-item active">Orders</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Products dataTable
+                                Orders dataTable
                             </div>
                             <div class="card-body">
 
@@ -36,10 +36,10 @@
                                     <tbody>
                                         <?php
 
-use app\controllers\OrderController;
+use app\controllers\AdminController;
 
-                                        $ordersController = new OrderController;
-                                        $list = $ordersController->findAll();
+                                        $adminController = new AdminController;
+                                        $list = $adminController->showOrders();
                                         foreach ($list as $order) {
                                             echo '
                                             <tr>
