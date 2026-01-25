@@ -6,18 +6,24 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\Product;
+use Exception;
 
 class siteController extends Controller
 {
 
     public function home()
-    {   
+    {
         $products = new Product;
         $products = $products->findAll();
-        $params=[
-            "products" =>$products
+        $params = [
+            "products" => $products
         ];
         return $this->render('home', $params);
+    }
+
+    public function cartPage()
+    {
+        return $this->render('cart');
     }
 
 
@@ -77,16 +83,47 @@ class siteController extends Controller
     }
 
 
-    public function productDetails(){
+    public function productDetails()
+    {
         $request = new Request();
         $body = $request->getBody();
         $product = new Product;
         $product->setId($body['id']);
         $product = $product->find();
-        $params=[
-            "product" =>$product
+        $params = [
+            "product" => $product
         ];
 
         return $this->render('/product-details', $params);
+    }
+
+    public function addToCart()
+    {
+        $request = new Request;
+        $body = $request->getBody();
+        $product = new Product();
+        $product->setId($body['addToCart']);
+        $product = $product->find();
+        $stock = $product->getStock();
+        $id = $product->getId();
+        if ($stock == 0) {
+            throw new Exception("No stock");
+        } else if ($stock < $body['quantity']) {
+            var_dump($product);
+            throw new Exception("Not enough stock only $stock left");
+        }
+
+        $_SESSION['cart'][$id] = [
+            'id' => $id,
+            'name' => $product->getName(),
+            'price' => $product->getPrice(),
+            'quantity' => $body['quantity'],
+            'total' => $product->getPrice() * $body['quantity']
+        ];
+        $stock = $stock - $body['quantity'];
+        $product->setStock($stock);
+        $product->updateStock();
+
+        var_dump($_SESSION);
     }
 }

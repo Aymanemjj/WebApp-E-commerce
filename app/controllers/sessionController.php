@@ -12,6 +12,7 @@ class sessionController{
         $_SESSION['fullname'] = $user->getFullname();
         $_SESSION['email']  = $user->getEmail();
         $_SESSION['role'] = $user->getRole();
+        $_SESSION['cart'] = [];
         $_SESSION['logged_in'] = true;
     }
 

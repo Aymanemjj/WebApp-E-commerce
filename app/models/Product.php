@@ -202,4 +202,16 @@ class Product
             $e->getMessage();
         }
     }
+
+    public function updateStock()
+    {
+        $sql = "UPDATE products SET stock = :stock WHERE id = :id";
+        $connexion = Database::getConnexion();
+
+        $stmt = $connexion->prepare($sql);
+
+        $stmt->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
+        $stmt->bindValue(':stock', $this->getStock(), \PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

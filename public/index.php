@@ -61,6 +61,9 @@ $app->router->get('/admin-users',[siteController::class, 'adminUsers']);
 $app->router->get('/admin-orders',[siteController::class, 'adminOrders']);
 
 $app->router->get('/product-details', [siteController::class, 'productDetails']);
+$app->router->post('/product-details', [siteController::class, 'addToCart']);
+
+$app->router->get('/cart',[siteController::class, 'cartPage']);
 
 $app->run();
 ?>
