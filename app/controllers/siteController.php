@@ -51,6 +51,7 @@ class siteController extends Controller
     public function logOut()
     {
         sessionController::endSession();
+        return $this->render('/logout');
     }
 
     public function login()
@@ -111,8 +112,10 @@ class siteController extends Controller
         } else if ($stock < $body['quantity']) {
             var_dump($product);
             throw new Exception("Not enough stock only $stock left");
-        }
-
+        }else if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id]['quantity']+=$body['quantity'];
+            return;
+        };
         $_SESSION['cart'][$id] = [
             'id' => $id,
             'name' => $product->getName(),
@@ -124,6 +127,5 @@ class siteController extends Controller
         $product->setStock($stock);
         $product->updateStock();
 
-        var_dump($_SESSION);
     }
 }

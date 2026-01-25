@@ -16,7 +16,7 @@ session_start();
   <link rel="icon" type="image/x-icon" href="config/favicon.ico" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<script src="https://kit.fontawesome.com/e53a9172bb.js" crossorigin="anonymous"></script>  <!-- Core theme CSS (includes Bootstrap)-->
+  <script src="https://kit.fontawesome.com/e53a9172bb.js" crossorigin="anonymous"></script> <!-- Core theme CSS (includes Bootstrap)-->
   <link href="config/styles.css" rel="stylesheet" />
 </head>
 
@@ -45,13 +45,13 @@ session_start();
           </li>
         </ul>
         <div class="d-flex">
-          <button class="btn btn-outline-dark" href="/cart">
-          <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        </button>
-        <?php if (!isset($_SESSION['logged_in'])) {
-          echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="btn btn-outline-dark mt-auto d-flex">
+            <i class="bi-cart-fill me-1"></i>
+            <a class="nav-link" href="/cart">Cart</a>
+            <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo count($_SESSION['cart']) ?></span>
+          </div>
+          <?php if (!isset($_SESSION['logged_in'])) {
+            echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/login">login</a>
           </li>
@@ -59,9 +59,9 @@ session_start();
             <a class="nav-link" href="/register">register</a>
           </li>
         </ul>';
-        } else {
-          echo '<button type="button" href="/logout" class="btn btn-outline-dark">Logout</button>';
-        } ?>
+          } else {
+            echo '<button type="button" href="/logout" class="btn btn-outline-dark">Logout</button>';
+          } ?>
         </div>
       </div>
     </div>

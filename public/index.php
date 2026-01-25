@@ -65,6 +65,7 @@ $app->router->post('/product-details', [siteController::class, 'addToCart']);
 
 $app->router->get('/cart',[siteController::class, 'cartPage']);
 
+
 $app->run();
 ?>
 

@@ -22,7 +22,7 @@ $total = 0;
 
         <?php if (empty($cart)): ?>
             <div class="text-center">
-                <h4>Your cart is empty 🛍️</h4>
+                <h4>Your cart is empty </h4>
                 <a href="/" class="btn btn-primary mt-3">Continue shopping</a>
             </div>
         <?php else: ?>
@@ -31,8 +31,7 @@ $total = 0;
                 <div class="col-lg-8">
 
                     <?php foreach ($cart as $item): 
-                        $subtotal = $item['price'] * $item['quantity'];
-                        $total += $subtotal;
+                        $total += $item['total'];
                     ?>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -45,16 +44,16 @@ $total = 0;
                                     </div>
 
                                     <div class="col-md-4 text-center text-md-start">
-                                        <h5 class="fw-bolder"><?= htmlspecialchars($item['name']) ?></h5>
-                                        <small class="text-muted"><?= $item['price'] ?> $</small>
+                                        <h5 class="fw-bolder"><?php echo($item['name']) ?></h5>
+                                        <small class="text-muted">$<?php echo($item['price']) ?>.00</small>
                                     </div>
 
                                     <div class="col-md-2 text-center">
-                                        <span class="fw-bold"><?= $item['quantity'] ?></span>
+                                        <span class="fw-bold">quantity : <?php echo($item['quantity']) ?></span>
                                     </div>
 
                                     <div class="col-md-2 text-center fw-bold">
-                                        <?= $subtotal ?> $
+                                        subtotal : $<?php echo($item['total']) ?>.00
                                     </div>
 
                                     <div class="col-md-1 text-center">
@@ -82,7 +81,7 @@ $total = 0;
 
                             <div class="d-flex justify-content-between">
                                 <span>Total</span>
-                                <span class="fw-bold"><?= $total ?> $</span>
+                                <span class="fw-bold">$<?php echo($total) ?>.00</span>
                             </div>
 
                             <hr>
