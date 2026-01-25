@@ -5,9 +5,13 @@ E-Shop est un site de commerce en ligne qui vend spécifiquement des produits li
 Il a été développé à l'aide de l'architecture MVC, de la programmation orientée objet (OOP) et du pilote PDO pour se connecter à la base de données.
 
 ## UML
+
 ### Diagram de class
+
 <img width="881" height="965" alt="Screenshot From 2026-01-25 20-56-40" src="https://github.com/user-attachments/assets/14a7374b-5092-42de-9696-d808b5d32aa0" />
+
 ### Diagram de cas d'utilisation
+
 <img width="501" height="835" alt="Screenshot From 2026-01-25 20-57-20" src="https://github.com/user-attachments/assets/1fd0a583-8da5-4b3b-9350-594deea87e9f" />
 
 ## Tech stack
