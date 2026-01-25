@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: php85_app
+    ports:
+      - "8087:80"
+    volumes:
+      - .:/var/www/html
+    restart: unless-stopped
+    depends_on:
+      - db # ensures db starts before app
+
+  db:
+    image: mysql:8
+    container_name: mysql_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: commerce
+      MYSQL_USER: root
+      MYSQL_PASSWORD: O2H2sql
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
