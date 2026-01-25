@@ -4,11 +4,11 @@ namespace app\core;
 
 class Controller{
 
-    public function render($view){
-        return Application::$app->router->renderView($view);
+    public function render($view, $params=[]){
+        return Application::$app->router->renderView($view, $params);
     }
 
-    public function renderAdmin($view){
-        return Application::$app->router->renderViewAdmin($view);
+    public function renderAdmin($view, $params=[]){
+        return Application::$app->router->renderViewAdmin($view, $params);
     }
 }

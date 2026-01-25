@@ -31,9 +31,9 @@ class Router
         $method = $this->request->getMethod();
 
         $callback = $this->routes[$method][$path] ?? false;
-        
+
         if ($callback === false) {
-            
+
             return $this->renderView('404');
             exit;
         }
@@ -44,25 +44,25 @@ class Router
         if (is_array($callback)) {
             $callback[0] = new $callback[0];
         }
-        
+
         return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view)
+    public function renderView($view, $param = [])
     {
-        if(is_int($view)){
+        if (is_int($view)) {
             $this->response->setResponseCode($view);
         }
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $param);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    public function renderViewAdmin($view)
+    public function renderViewAdmin($view, $params = [])
     {
 
         $layoutContent = $this->layoutContentAdmin();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -82,9 +82,11 @@ class Router
         return ob_get_clean();
     }
 
-    private function renderOnlyView($view, )
+    private function renderOnlyView($view, $params = [])
     {
 
+            extract($params);
+        
 
         ob_start();
         include_once Application::$ROOT_DIR . "/app/views/$view.php";

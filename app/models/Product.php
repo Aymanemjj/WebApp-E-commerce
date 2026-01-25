@@ -133,7 +133,8 @@ class Product
     }
 
 
-    public function setter($body){
+    public function setter($body)
+    {
         $this->setName($body['name']);
         $this->setCategory($body['category']);
         $this->setPrice($body['price']);
@@ -158,12 +159,12 @@ class Product
 
     public function find(): Product | bool
     {
-        $sql = "SELECT * FROM Products WHERE name = :name";
+        $sql = "SELECT products.id,products.name,products.description,products.price,products.stock,categories.name AS category FROM products INNER JOIN categories ON products.category = categories.id WHERE products.id = :id";
         $connexion = Database::getConnexion();
 
         $stmt = $connexion->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
         $stmt->setFetchMode(\PDO::FETCH_CLASS, Product::class);
         $stmt->execute();
 
@@ -171,9 +172,9 @@ class Product
         return $stmt->fetch();
     }
 
-       public function findAll()
+    public function findAll()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT products.id,products.name,products.description,products.price,products.stock,categories.name AS category FROM products INNER JOIN categories ON products.category = categories.id";
         $connexion = Database::getConnexion();
 
         $stmt = $connexion->prepare($sql);

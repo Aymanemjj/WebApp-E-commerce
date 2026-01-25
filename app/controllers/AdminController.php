@@ -3,12 +3,13 @@
 namespace app\controllers;
 
 use app\controllers\ProductController;
+use app\core\Controller;
 use app\models\Category;
 use app\models\Orders;
 use app\models\Product;
 use app\models\User;
 
-class AdminController
+class AdminController extends Controller
 {
 
 
@@ -32,7 +33,14 @@ class AdminController
 
     public function showProducts(){
         $product = new Product;
-        return $product->findAll();
+        $products = $product->findAll();
+        $categories = $this->showCategorys();
+        $params = [
+            "products" => $products,
+            "categories" => $categories
+        ];
+        return $this->renderAdmin("/admin-products", $params);
+
     }
 
     public function showCategorys(){

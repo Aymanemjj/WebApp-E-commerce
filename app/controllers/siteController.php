@@ -5,18 +5,23 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-
+use app\models\Product;
 
 class siteController extends Controller
 {
 
     public function home()
-    {
-        return $this->render('home');
+    {   
+        $products = new Product;
+        $products = $products->findAll();
+        $params=[
+            "products" =>$products
+        ];
+        return $this->render('home', $params);
     }
 
 
-    public function admin_dashboard()
+    public function adminDashboard()
     {
         return $this->renderAdmin('admin-dashboard');
     }
@@ -51,23 +56,37 @@ class siteController extends Controller
         return $this->render('/login');
     }
 
-    public function admin_products()
+    public function adminProducts()
     {
         return $this->renderAdmin('/admin-products');
     }
 
-    public function admin_charts()
+    public function adminCharts()
     {
         return $this->renderAdmin('/admin-charts');
     }
 
-    public function admin_users()
+    public function adminUsers()
     {
         return $this->renderAdmin('/admin-users');
     }
 
-    public function admin_orders()
+    public function adminOrders()
     {
         return $this->renderAdmin('/admin-orders');
+    }
+
+
+    public function productDetails(){
+        $request = new Request();
+        $body = $request->getBody();
+        $product = new Product;
+        $product->setId($body['id']);
+        $product = $product->find();
+        $params=[
+            "product" =>$product
+        ];
+
+        return $this->render('/product-details', $params);
     }
 }

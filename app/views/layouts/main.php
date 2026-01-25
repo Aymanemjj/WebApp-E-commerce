@@ -55,9 +55,7 @@
           </li>
         </ul>';
         } else {
-          echo '<form action="" method="post" class="d-flex">
-                        <button type="submit" value="logout" class="btn btn-outline-dark">Logout</button>
-                    </form>';
+          echo '<button type="button" href="/logout" class="btn btn-outline-dark">Logout</button>';
         } ?>
         </div>
       </div>

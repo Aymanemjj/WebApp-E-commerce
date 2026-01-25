@@ -40,15 +40,11 @@
                                     <tbody>
                                         <?php
 
-use app\controllers\AdminController;
-
-                                        $adminController = new AdminController;
-                                        $list = $adminController->showProducts();
-                                        foreach ($list as $product) {
+                                        foreach ($params['products'] as $product) {
                                             echo '
                                             <tr>
                                             <td>' . $product->getName() . '</td>
-                                            <td>' . $product->getPrice() . '</td>
+                                            <td>$' . $product->getPrice() . '.00</td>
                                             <td>' . $product->getStock() . '</td>
                                             <td>' . $product->getCategory() . '</td>
                                             <td>
@@ -93,8 +89,7 @@ use app\controllers\AdminController;
                                                             <?php
 
 
-                                                            $list = $adminController->showCategorys();
-                                                            foreach ($list as $category) {
+                                                            foreach ($params['categories'] as $category) {
                                                                 echo '<option value="' . $category->getId() . '">'
                                                                     . $category->getName() .
                                                                     '</option>';

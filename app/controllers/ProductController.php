@@ -18,6 +18,9 @@ class ProductController{
         $product->save();
     }
 
+    public function productDetails(){
+        
+    }
 
      
 }

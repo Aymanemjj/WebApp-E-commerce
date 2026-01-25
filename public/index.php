@@ -41,22 +41,26 @@ $app->router->post('/about',[siteController::class, 'handleContact']);
 $app->router->get('/login', [siteController::class,'login']);
 $app->router->post('/login', [AuthController::class,'login']);
 
+$app->router->get('/logout',[siteController::class, 'logout']);
+
+
 $app->router->get('/register', [siteController::class,'register']);
 $app->router->post('/register', [AuthController::class,'register']);
 
-$app->router->get('/admin-dashboard', [siteController::class, 'admin_dashboard']);
+$app->router->get('/admin-dashboard', [siteController::class, 'adminDashboard']);
 $app->router->post('/admin-dashboard', [siteController::class, 'logOut']);
 
 $app->router->get('/401', [siteController::class, 'error401']);
 
-$app->router->get('/admin-products',[siteController::class, 'admin_products']);
+$app->router->get('/admin-products',[AdminController::class, 'showProducts']);
 $app->router->post('/admin-products', [AdminController::class, 'switch']);
 
-$app->router->get('/admin-charts',[siteController::class, 'admin_charts']);
-$app->router->get('/admin-users',[siteController::class, 'admin_users']);
+$app->router->get('/admin-charts',[siteController::class, 'adminCharts']);
+$app->router->get('/admin-users',[siteController::class, 'adminUsers']);
 
-$app->router->get('/admin-orders',[siteController::class, 'admin_orders']);
+$app->router->get('/admin-orders',[siteController::class, 'adminOrders']);
 
+$app->router->get('/product-details', [siteController::class, 'productDetails']);
 
 $app->run();
 ?>
