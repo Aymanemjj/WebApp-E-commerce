@@ -188,12 +188,12 @@ class Product
 
     public function delete()
     {
-        $sql = "DELETE FROM products WHERE name = :name";
+        $sql = "DELETE FROM products WHERE id = :id";
         $connexion = Database::getConnexion();
 
         $stmt = $connexion->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->getId(), \PDO::PARAM_STR);
 
         try {
             $stmt->execute();

@@ -17,6 +17,7 @@ class LoginController{
             $this->isValidEmailSignUp($body);
         } catch (Exception $e) {
             $e->getMessage();
+            return;
         } 
 
         $user = new User();
@@ -25,6 +26,7 @@ class LoginController{
             $this->userExists($user);
         } catch (Exception $e) {
             $e->getMessage();
+            return;
         }
 
         $object = $user->find();
@@ -48,6 +50,7 @@ class LoginController{
         $object = $user->find();
         if (!is_object($object)) {
             throw new \Exception("Email or password are wrong");
+            return;
         }
 
         if (!password_verify($user->getPassword(), $object->getPassword())) {

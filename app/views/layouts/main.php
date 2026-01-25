@@ -48,20 +48,25 @@ session_start();
           <div class="btn btn-outline-dark mt-auto d-flex">
             <i class="bi-cart-fill me-1"></i>
             <a class="nav-link" href="/cart">Cart</a>
-            <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo count($_SESSION['cart']) ?></span>
+            <span class="badge bg-dark text-white ms-1 rounded-pill"><?php 
+            if(isset($_SESSION['cart'])){
+              echo count($_SESSION['cart']);
+              } ?></span>
           </div>
-          <?php if (!isset($_SESSION['logged_in'])) {
-            echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <?php if (!isset($_SESSION['logged_in'])):?>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/login">login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register">register</a>
           </li>
-        </ul>';
-          } else {
-            echo '<button type="button" href="/logout" class="btn btn-outline-dark">Logout</button>';
-          } ?>
+        </ul>
+           <?php else: ?> 
+            <div class="btn btn-outline-dark mt-auto d-flex">
+            <a class="nav-link" href="/logout">Logout</a>
+          </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>

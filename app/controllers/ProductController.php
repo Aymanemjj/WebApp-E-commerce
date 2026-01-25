@@ -18,9 +18,14 @@ class ProductController{
         $product->save();
     }
 
-    public function productDetails(){
-        
-    }
 
+    public function deleteProduct(){
+        $request = new Request;
+        $body = $request->getBody();
+
+        $product = new Product;
+        $product->setId($body['delete']);
+        $product->delete();
+    }
      
 }

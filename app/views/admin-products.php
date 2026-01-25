@@ -48,8 +48,14 @@
                                             <td>' . $product->getStock() . '</td>
                                             <td>' . $product->getCategory() . '</td>
                                             <td>
+                                            <div class="d-flex">
+                                            <form action="" method="post">
                                                 <button type="submit" name="edit" value="' . $product->getId() . '" class="btn btn-secondary">Edit</button>
+                                            </form>
+                                            <form action="" method="post">
                                                 <button type="submit" name="delete" value="' . $product->getId() . '" class="btn btn-danger">Delete</button>
+                                            </form>
+                                            </div>
                                             </td>
                                             </tr>';
                                         }
